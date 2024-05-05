@@ -13,7 +13,7 @@ class Ad(models.Model):
     price = models.PositiveIntegerField(verbose_name="цена")
     description = models.TextField(verbose_name="описание", max_length=500, **NULLABLE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="ads", on_delete=models.CASCADE,
-                               verbose_name="автор")
+                               verbose_name="автор", **NULLABLE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="время создания")
     image = models.ImageField(upload_to="ads/", verbose_name="Изображение", **NULLABLE)
 
@@ -33,7 +33,7 @@ class Review(models.Model):
 
     text = models.TextField(verbose_name="текст отзыва")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="reviews", on_delete=models.CASCADE,
-                               verbose_name="автор")
+                               verbose_name="автор", **NULLABLE)
     ad = models.ForeignKey(Ad, related_name="reviews", on_delete=models.CASCADE, verbose_name="объявление")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="время создания")
 
