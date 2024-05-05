@@ -26,13 +26,13 @@ class ReviewSerializer(serializers.ModelSerializer):
     """"Класс-сериализатор для модели Review"""
     author_first_name = serializers.CharField(source="author.first_name", read_only=True)
     author_last_name = serializers.CharField(source="author.last_name", read_only=True)
-    author_image = serializers.SerializerMethodField()
+    author_avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = Review
         fields = '__all__'
 
-    def get_author_image(self, obj):
+    def get_author_avatar(self, obj):
         request = self.context.get("request")
-        if obj.author.image:
-            return request.build_absolute_uri(obj.author.image.url)
+        if obj.author_avatar:
+            return request.build_absolute_uri(obj.author_avatar.url)

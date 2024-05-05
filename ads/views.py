@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from ads.filters import AdFilter
 from ads.models import Ad, Review
 from ads.permissions import IsAdminOrOwner
-from ads.serializers import AdSerializer, AdDetailSerializer
+from ads.serializers import AdSerializer, AdDetailSerializer, ReviewSerializer
 
 
 class AdPagination(pagination.PageNumberPagination):
@@ -48,6 +48,7 @@ class AdViewSet(viewsets.ModelViewSet):
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     filter_backends = [DjangoFilterBackend]
+    serializer_class = ReviewSerializer
 
     def get_queryset(self):
         """Получает отзывы для определенного объявления"""
