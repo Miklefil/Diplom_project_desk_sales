@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 from config import settings
 from users.models import NULLABLE
 
@@ -14,7 +14,7 @@ class Ad(models.Model):
     description = models.TextField(verbose_name="описание", max_length=500, **NULLABLE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="ads", on_delete=models.CASCADE,
                                verbose_name="автор", **NULLABLE)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="время создания")
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="время создания")
     image = models.ImageField(upload_to="ads/", verbose_name="Изображение", **NULLABLE)
 
     class Meta:
@@ -35,7 +35,7 @@ class Review(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="reviews", on_delete=models.CASCADE,
                                verbose_name="автор", **NULLABLE)
     ad = models.ForeignKey(Ad, related_name="reviews", on_delete=models.CASCADE, verbose_name="объявление")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="время создания")
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="время создания")
 
     class Meta:
         ordering = ["-created_at"]
