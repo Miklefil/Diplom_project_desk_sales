@@ -1,4 +1,4 @@
-asgiref==3.4.1
+asgiref==3.8.1
 astroid==2.15.8
 black==22.1.0
 certifi==2021.10.8
@@ -10,9 +10,9 @@ coreschema==0.0.4
 coverage==7.4.1
 cryptography==36.0.1
 defusedxml==0.7.1
-Django==3.2.6
+Django==5.0.4
 django-cors-headers==3.8.0
-django-filter==21.1
+django-filter==24.2
 django-phonenumber-field==6.0.0
 django-templated-mail==1.1.1
 djangorestframework==3.13.1
